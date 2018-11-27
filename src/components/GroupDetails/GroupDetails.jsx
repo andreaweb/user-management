@@ -13,6 +13,15 @@ class GroupDetails extends Component {
   render() {
     return (
       <div className="group-details">
+        <h1>Group Details: Group</h1>
+        <table>
+          <thead>
+            <tr><td>Users</td></tr>
+          </thead>
+          <tbody>
+            <tr><td></td></tr>
+          </tbody>
+        </table>
       </div>
     );
   }

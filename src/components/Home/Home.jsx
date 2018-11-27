@@ -12,9 +12,19 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="home">
+      <main className="home">
         <h1>Home</h1>
-      </div>
+        <table>
+          <thead>
+            <tr><td>Users</td></tr>
+            <tr><td>Groups</td></tr>
+          </thead>
+          <tbody>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+          </tbody>
+        </table>
+      </main>
     );
   }
 }

@@ -13,7 +13,15 @@ class UserDetails extends Component {
   render() {
     return (
       <div className="user-details">
-       <h1>UserDetails</h1>
+       <h1>UserDetails: User</h1>
+       <table>
+          <thead>
+            <tr><td>Groups</td></tr>
+          </thead>
+          <tbody>
+            <tr><td></td></tr>
+          </tbody>
+        </table>
       </div>
     );
   }

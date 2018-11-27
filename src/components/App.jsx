@@ -13,8 +13,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-          <Aside />
+        <div className="container">
           <Switch>
             <Route exact path="/" render={()=><Home/>}/>
             <Route exact path="/group-details" render={()=><GroupDetails/>}/>
@@ -22,6 +21,7 @@ class App extends Component {
             <Route exact path="/new-group" render={()=><NewGroup/>}/>
             <Route exact path="/new-user" component={NewUser}/>
           </Switch>
+          <Aside />
         </div>
       </Router>
     );

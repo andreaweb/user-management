@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './NewGroup.scss';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 class NewGroup extends Component {
   state = {
@@ -10,11 +12,26 @@ class NewGroup extends Component {
     super(props);
   }
 
+  handleChange = prop => event => {
+    this.setState({ [prop]: event.target.value });
+  };
+
   render() {
     return (
-      <div className="new-group">
+      <main className="new-group">
         <h1>New Group</h1>
-      </div>
+        <TextField
+          required
+          id="filled-required"
+          label="Name"
+          margin="normal"
+          variant="filled"
+          onChange={this.handleChange('name')}
+        />
+        <Button variant="outlined" type="submit" color="primary">
+          CONFIRM
+        </Button>
+      </main>
     );
   }
 }
