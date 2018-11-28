@@ -1,5 +1,5 @@
 User Management List
 
-Install with yarn install
+Install dependencies with yarn install
 
 Run with yarn start
