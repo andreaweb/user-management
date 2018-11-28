@@ -12,7 +12,7 @@ class UserDetails extends Component {
 
   render() {
     return (
-      <div className="user-details">
+      <main className="user-details">
        <h1>UserDetails: User</h1>
        <table>
           <thead>
@@ -22,7 +22,7 @@ class UserDetails extends Component {
             <tr><td></td></tr>
           </tbody>
         </table>
-      </div>
+      </main>
     );
   }
 }

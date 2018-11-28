@@ -12,7 +12,7 @@ class GroupDetails extends Component {
 
   render() {
     return (
-      <div className="group-details">
+      <main className="group-details">
         <h1>Group Details: Group</h1>
         <table>
           <thead>
@@ -22,7 +22,7 @@ class GroupDetails extends Component {
             <tr><td></td></tr>
           </tbody>
         </table>
-      </div>
+      </main>
     );
   }
 }

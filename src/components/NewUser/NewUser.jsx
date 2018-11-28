@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './NewUser.scss';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -30,9 +31,6 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
   },
 });
-
-
-const groups = ['Golf', 'Football', 'Basketball', 'E-Games', 'Swimming'];
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -72,16 +70,40 @@ class NewUser extends Component {
     this.setState({ [prop]: event.target.value });
   };
 
+  handleSubmit = () => {
+    if(this.state.name.length > 0 && this.state.group.length > 0){
+        let checkIfNew = [];
+        for(let i = 0; i < this.state.group.length; i++){
+          checkIfNew.push(
+            String(
+              this.props.groups.filter(
+                group => group.id === this.state.group[i]
+              ).map(
+                group => group.users.has(this.state.name)
+              )
+            )
+          );
+        }
+        if(checkIfNew.includes('false')){
+          alert(`${this.state.name} has been included in at least 1 new group!`);
+        }else{
+          alert(`${this.state.name} already is in all groups that have been selected!`);
+        }
+    }else{
+      //apply error styles
+    }
+  }
+
   render() {
     return (
       <main className="new-user">
         <h1>New User</h1>
+        <p>Add new users to any group, or add existing users to new groups.</p>
         <TextField
           required
           id="filled-required"
           label="Name"
           margin="normal"
-          variant="filled"
           onChange={this.handleChange('name')}
         />
         <FormControl>
@@ -95,14 +117,14 @@ class NewUser extends Component {
             input={<Input id="select-multiple" />}
             MenuProps={MenuProps}
           >
-            {groups.map(group => (
-              <MenuItem key={group} value={group} style={getStyles(group, this)}>
-                {group}
+            {this.props.groups.map(group => (
+              <MenuItem key={group.id} value={group.id} style={getStyles(group.id, this)}>
+                {group.id}
               </MenuItem>
             ))}
           </Select>
         </FormControl>
-        <Button variant="outlined" type="submit" color="primary">
+        <Button variant="outlined" onClick={this.handleSubmit} type="submit" color="primary">
           CONFIRM
         </Button>
       </main>
@@ -111,6 +133,6 @@ class NewUser extends Component {
 }
 
 NewUser.propTypes = {
- 
+ groups: PropTypes.array
 };
 export default withStyles(styles, { withTheme: true })(NewUser);
