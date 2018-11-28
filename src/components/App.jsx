@@ -18,7 +18,26 @@ class App extends Component {
   };
 
   includeGroup = group => {
-    this.setState({groups: [...this.state.groups, {id: group}] });
+    this.setState({groups: [...this.state.groups, {id: group, users: new Set([])}] });
+  }
+
+  includeUser = (user,groups) => {
+    for(let i = 0; i < groups.length; i++){
+      let currentIndex = this.state.groups.indexOf(
+        this.state.groups.find(group => group.id === groups[i])
+      );
+
+      this.setState(({groups}) => ({
+        groups: [
+          ...groups.slice(0,currentIndex),
+          {
+            ...groups[currentIndex],
+            users: groups[currentIndex].users.add(user)
+          },
+          ...groups.slice(currentIndex+1)
+        ]
+      }));
+    }
   }
 
   render() {
@@ -33,7 +52,12 @@ class App extends Component {
                   includeGroup={(group) => this.includeGroup(group)}
                   />
             }/>
-            <Route exact path="/new-user" component={()=><NewUser groups={this.state.groups} />}/>
+            <Route exact path="/new-user" render={
+              ()=><NewUser 
+              groups={this.state.groups} 
+              includeUser={(user, groups) => this.includeUser(user,groups)} 
+              />
+            }/>
           </Switch>
           <Aside />
         </div>

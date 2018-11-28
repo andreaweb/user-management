@@ -85,6 +85,7 @@ class NewUser extends Component {
           );
         }
         if(checkIfNew.includes('false')){
+          this.props.includeUser(this.state.name, this.state.group);
           alert(`${this.state.name} has been included in at least 1 new group!`);
         }else{
           alert(`${this.state.name} already is in all groups that have been selected!`);
@@ -133,6 +134,7 @@ class NewUser extends Component {
 }
 
 NewUser.propTypes = {
- groups: PropTypes.array
+ groups: PropTypes.array,
+ includeUser: PropTypes.func
 };
 export default withStyles(styles, { withTheme: true })(NewUser);

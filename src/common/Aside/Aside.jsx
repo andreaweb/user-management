@@ -20,10 +20,10 @@ class Aside extends Component {
   render() {
     return (
       <aside className="aside">
-          <Button variant="contained" color="primary" href="/new-group">
+          <Button variant="contained" component={Link} color="primary" to="/new-group">
             New Group
           </Button>
-          <Button variant="contained" color="primary" href="/new-user">
+          <Button variant="contained" component={Link} color="primary" to="/new-user">
             New User
           </Button>
           <MenuList>
